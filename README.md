@@ -1,1 +1,1 @@
-# simple-shopping-list
+# Simple Shopping List
