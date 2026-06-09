@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+  "name": "Simple Shopping List",
+  "short_name": "SimpleShoppingList",
+  "description": "A very simple shopping list application",
+  "theme_color": "#ffffff",
+  "icons": []
+}
