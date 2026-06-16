@@ -1,5 +1,11 @@
+import { Button } from "@shadcn-ui/components/ui/button";
 import "./index.css";
 
 export const App = () => {
-  return <h1 className="text-xl">Hello World</h1>;
+  return (
+    <>
+      <h1 className="text-xl">Hello World</h1>
+      <Button onClick={() => console.log("Hello World")}>Click Me</Button>
+    </>
+  );
 };
