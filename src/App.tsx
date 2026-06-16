@@ -1,11 +1,15 @@
-import { Button } from "@shadcn-ui/components/ui/button";
 import "./index.css";
+import { BrowserRouter, Route, Routes } from "react-router";
+import { HomeRoute } from "./routes/home/route";
+import { SettingsRoute } from "./routes/settings/route";
 
 export const App = () => {
   return (
-    <>
-      <h1 className="text-xl">Hello World</h1>
-      <Button onClick={() => console.log("Hello World")}>Click Me</Button>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomeRoute />} />
+        <Route path="/settings" element={<SettingsRoute />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
