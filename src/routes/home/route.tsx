@@ -1,6 +1,7 @@
 import { Button } from "@shadcn-ui/components/ui/button";
 import { Settings } from "lucide-react";
 import { Link } from "react-router";
+import { InstallButton } from "../../components/InstallButton";
 
 export const HomeRoute = () => {
   return (
@@ -17,6 +18,8 @@ export const HomeRoute = () => {
           </Link>
         </div>
       </header>
+
+      <InstallButton />
     </main>
   );
 };
