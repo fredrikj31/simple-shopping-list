@@ -1,23 +1,26 @@
 import { Button } from "@shadcn-ui/components/ui/button";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface BeforeInstallPromptEvent extends Event {
   prompt(): Promise<void>;
-  userChoice: Promise<{ outcome: "accepted" | "dismissed"; platform: string }>;
+  userChoice: Promise<{
+    outcome: "accepted" | "dismissed";
+    platform: string;
+  }>;
 }
 
 export const InstallButton = () => {
-  const [deferredPrompt, setDeferredPrompt] =
-    useState<BeforeInstallPromptEvent | null>(null);
+  const installPrompt = useRef<BeforeInstallPromptEvent | null>(null);
+  const [isInstallable, setIsInstallable] = useState(false);
 
   useEffect(() => {
     const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault();
-      setDeferredPrompt(e as BeforeInstallPromptEvent);
+      installPrompt.current = e as BeforeInstallPromptEvent;
+      setIsInstallable(true);
     };
 
     window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
-
     return () => {
       window.removeEventListener(
         "beforeinstallprompt",
@@ -27,10 +30,10 @@ export const InstallButton = () => {
   }, []);
 
   const handleInstall = async () => {
-    if (!deferredPrompt) return;
+    if (!installPrompt.current) return;
 
-    await deferredPrompt.prompt();
-    const { outcome } = await deferredPrompt.userChoice;
+    await installPrompt.current.prompt();
+    const { outcome } = await installPrompt.current.userChoice;
 
     console.log(
       outcome === "accepted"
@@ -38,8 +41,11 @@ export const InstallButton = () => {
         : "User dismissed the installation prompt",
     );
 
-    setDeferredPrompt(null);
+    installPrompt.current = null;
+    setIsInstallable(false);
   };
+
+  if (!isInstallable) return null;
 
   return (
     <Button className="w-fit" onClick={handleInstall}>
