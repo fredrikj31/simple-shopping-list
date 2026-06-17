@@ -9,12 +9,15 @@ export const SettingsRoute = () => {
         <div className="flex items-center gap-2 px-4 py-4">
           <Link to="/">
             <Button variant="ghost" size="icon">
-              <ArrowLeft className="h-5 w-5" />
+              <ArrowLeft className="size-5" />
             </Button>
           </Link>
-          <h1 className="text-2xl font-bold tracking-tight md:text-3xl">
-            Settings
-          </h1>
+          <div className="flex flex-col">
+            <h1 className="text-2xl font-bold text-foreground">Settings</h1>
+            <p className="text-sm text-muted-foreground">
+              Change your preferences here
+            </p>
+          </div>
         </div>
       </header>
     </main>
