@@ -8,9 +8,20 @@ import path from "path";
 export default defineConfig({
   plugins: [
     react(),
-    VitePWA({ registerType: "prompt", manifest: false }),
+    VitePWA({
+      registerType: "prompt",
+      manifest: false,
+      workbox: {
+        cleanupOutdatedCaches: true, // auto-removes old caches
+      },
+    }),
     tailwindcss(),
   ],
+  build: {
+    rolldownOptions: {
+      external: ["workbox-window"],
+    },
+  },
   resolve: {
     alias: {
       "@shadcn-ui": path.resolve(__dirname, "./src/shadcn-ui"),
