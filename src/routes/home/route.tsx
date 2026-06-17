@@ -24,6 +24,13 @@ export const HomeRoute = () => {
         </div>
       </header>
 
+      <div className="rounded-lg border border-border bg-secondary/50 p-12 text-center mx-4 mt-4">
+        <p className="text-muted-foreground mb-4">No shopping lists yet</p>
+        <p className="text-sm text-muted-foreground">
+          Create your first list to get started
+        </p>
+      </div>
+
       <InstallButton />
     </main>
   );
