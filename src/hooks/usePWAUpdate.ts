@@ -1,25 +1,17 @@
-import { useRef, useState, useEffect } from "react";
-import { registerSW } from "virtual:pwa-register";
+import { useRegisterSW } from "virtual:pwa-register/react";
 
 export function usePWAUpdate() {
-  const [needRefresh, setNeedRefresh] = useState(false);
-  const updateSWRef = useRef<((reloadPage?: boolean) => Promise<void>) | null>(
-    null,
-  );
-
-  useEffect(() => {
-    updateSWRef.current = registerSW({
-      onNeedRefresh() {
-        setNeedRefresh(true);
-      },
-      onOfflineReady() {
-        console.log("App is ready to work offline");
-      },
-    });
-  }, []);
+  const {
+    needRefresh: [needRefresh, setNeedRefresh],
+    updateServiceWorker,
+  } = useRegisterSW({
+    onOfflineReady() {
+      console.log("App is ready to work offline");
+    },
+  });
 
   const applyUpdate = async () => {
-    await updateSWRef.current?.(true);
+    await updateServiceWorker(true);
   };
 
   const dismiss = () => {

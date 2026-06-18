@@ -17,11 +17,6 @@ export default defineConfig({
     }),
     tailwindcss(),
   ],
-  build: {
-    rolldownOptions: {
-      external: ["workbox-window"],
-    },
-  },
   resolve: {
     alias: {
       "@shadcn-ui": path.resolve(__dirname, "./src/shadcn-ui"),
