@@ -1,7 +1,7 @@
-import { openDB, type IDBPDatabase } from "idb";
+import { openDB, type IDBPDatabase, type DBSchema } from "idb";
 import { STORE_NAME as LIST_STORE, type ListStore } from "./list";
 
-interface ShoppingListDB {
+interface ShoppingListDB extends DBSchema {
   lists: ListStore;
 }
 
