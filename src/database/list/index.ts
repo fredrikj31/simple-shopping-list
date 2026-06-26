@@ -1,6 +1,6 @@
 import { getDB } from "../index";
 import { createList, CreateListOptions } from "./queries/createList";
-import { getLists } from "./queries/getLists";
+import { listLists } from "./queries/getLists";
 
 export const STORE_NAME = "lists" as const;
 
@@ -15,7 +15,7 @@ export const listDatabase = {
     return createList(await getDB(), options);
   },
 
-  getLists: async () => {
-    return getLists(await getDB());
+  listLists: async () => {
+    return listLists(await getDB());
   },
 };
