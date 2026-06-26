@@ -2,6 +2,7 @@ import { Button } from "@shadcn-ui/components/ui/button";
 import { PlusIcon, Settings } from "lucide-react";
 import { Link } from "react-router";
 import { FloatingButton } from "../../components/FloatingButton";
+import { CreateListDialog } from "../../components/CreateListDialog";
 
 export const HomeRoute = () => {
   return (
@@ -34,9 +35,13 @@ export const HomeRoute = () => {
           </div>
         </div>
       </main>
-      <FloatingButton onClick={() => console.log("Clicked!")}>
-        <PlusIcon className="size-6" />
-      </FloatingButton>
+      <CreateListDialog
+        triggerElement={
+          <FloatingButton onClick={() => console.log("Clicked!")}>
+            <PlusIcon className="size-6" />
+          </FloatingButton>
+        }
+      />
     </>
   );
 };
