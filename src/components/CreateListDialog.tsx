@@ -13,8 +13,8 @@ import { Input } from "@shadcn-ui/components/ui/input";
 import { ReactNode, useState } from "react";
 import { z } from "zod";
 import { useForm } from "@tanstack/react-form";
-import { listDatabase } from "../database/list";
 import { toast } from "sonner";
+import { useCreateList } from "../hooks/useCreateList";
 
 const formSchema = z.object({
   name: z.string().min(1, "Name must be at least 1 character."),
@@ -26,6 +26,9 @@ interface CreateListDialogProps {
 export const CreateListDialog = ({ triggerElement }: CreateListDialogProps) => {
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
 
+  const { mutate: createList, isPending: isCreateListPending } =
+    useCreateList();
+
   const form = useForm({
     defaultValues: {
       name: "",
@@ -35,11 +38,21 @@ export const CreateListDialog = ({ triggerElement }: CreateListDialogProps) => {
     },
     onSubmit: async ({ value, formApi }) => {
       const { name } = value;
-      await listDatabase.createList({ name });
-
-      formApi.reset();
-      toast.success("Successfully created list");
-      setIsDialogOpen(false);
+      createList(
+        { name },
+        {
+          onError: (error) => {
+            toast.error("Error while creating list");
+            console.error(error);
+            return;
+          },
+          onSuccess: () => {
+            formApi.reset();
+            toast.success("Successfully created list");
+            setIsDialogOpen(false);
+          },
+        },
+      );
     },
   });
 
@@ -82,7 +95,11 @@ export const CreateListDialog = ({ triggerElement }: CreateListDialogProps) => {
           />
         </form>
         <DialogFooter className="justify-end flex flex-row">
-          <Button type="submit" form="create-list-form">
+          <Button
+            type="submit"
+            form="create-list-form"
+            disabled={isCreateListPending}
+          >
             Create
           </Button>
           <DialogClose asChild>
