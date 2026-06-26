@@ -4,6 +4,7 @@ import { HomeRoute } from "./routes/home/route";
 import { SettingsRoute } from "./routes/settings/route";
 import { PWAInstallPrompt } from "./components/PWAInstallPrompt";
 import { PWAUpdatePrompt } from "./components/PWAUpdatePrompt";
+import { Toaster } from "@shadcn-ui/components/ui/sonner";
 
 export const App = () => {
   return (
@@ -16,6 +17,7 @@ export const App = () => {
       </BrowserRouter>
       <PWAInstallPrompt />
       <PWAUpdatePrompt />
+      <Toaster />
     </>
   );
 };

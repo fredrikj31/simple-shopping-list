@@ -1,43 +1,47 @@
 import { Button } from "@shadcn-ui/components/ui/button";
-import { Settings } from "lucide-react";
+import { PlusIcon, Settings } from "lucide-react";
 import { Link } from "react-router";
+import { FloatingButton } from "../../components/FloatingButton";
+import { CreateListDialog } from "../../components/CreateListDialog";
 
 export const HomeRoute = () => {
   return (
-    <main className="flex flex-col min-h-screen bg-background">
-      <header className="border-b border-border bg-card">
-        <div className="flex flex-row items-center justify-between px-4 py-4">
-          <div className="flex flex-col">
-            <h1 className="text-2xl font-bold text-foreground">
-              Shopping Lists
-            </h1>
+    <>
+      <main className="flex flex-col min-h-screen bg-background">
+        <header className="border-b border-border bg-card">
+          <div className="flex flex-row items-center justify-between px-4 py-4">
+            <div className="flex flex-col">
+              <h1 className="text-2xl font-bold text-foreground">
+                Shopping Lists
+              </h1>
+              <p className="text-sm text-muted-foreground">
+                Organize your shopping with multiple lists
+              </p>
+            </div>
+            <Link to="/settings">
+              <Button variant="ghost" size="icon">
+                <Settings className="size-5" />
+              </Button>
+            </Link>
+          </div>
+        </header>
+
+        <div className="mx-4 mt-2 flex flex-col items-center gap-4">
+          <div className="rounded-lg border border-border bg-secondary/50 p-12 text-center w-full">
+            <p className="text-muted-foreground mb-4">No shopping lists yet</p>
             <p className="text-sm text-muted-foreground">
-              Organize your shopping with multiple lists
+              Create your first list to get started
             </p>
           </div>
-          <Link to="/settings">
-            <Button variant="ghost" size="icon">
-              <Settings className="size-5" />
-            </Button>
-          </Link>
         </div>
-      </header>
-
-      <div className="mx-4 mt-2 flex flex-col items-center gap-4">
-        <Button
-          className="w-fit hover:cursor-pointer"
-          onClick={() => alert("Hello World!")}
-        >
-          Create List
-        </Button>
-
-        <div className="rounded-lg border border-border bg-secondary/50 p-12 text-center w-full">
-          <p className="text-muted-foreground mb-4">No shopping lists yet</p>
-          <p className="text-sm text-muted-foreground">
-            Create your first list to get started
-          </p>
-        </div>
-      </div>
-    </main>
+      </main>
+      <CreateListDialog
+        triggerElement={
+          <FloatingButton onClick={() => console.log("Clicked!")}>
+            <PlusIcon className="size-6" />
+          </FloatingButton>
+        }
+      />
+    </>
   );
 };
