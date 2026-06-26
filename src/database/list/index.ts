@@ -1,7 +1,7 @@
 import { getDB } from "../index";
 import { getLists } from "./queries/getLists";
 
-export const STORE_NAME = "lists";
+export const STORE_NAME = "lists" as const;
 
 export interface ListStore {
   key: string;
