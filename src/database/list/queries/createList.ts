@@ -10,7 +10,7 @@ export const createList = async (
   db: IDBPDatabase<ShoppingListDB>,
   { name }: CreateListOptions,
 ): Promise<void> => {
-  const currentLists = await listDatabase.getLists();
+  const currentLists = await listDatabase.listLists();
 
   const id = uuidv4();
   const index = currentLists.length;
