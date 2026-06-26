@@ -24,13 +24,6 @@ export const HomeRoute = () => {
       </header>
 
       <div className="mx-4 mt-2 flex flex-col items-center gap-4">
-        <Button
-          className="w-fit hover:cursor-pointer"
-          onClick={() => alert("Hello World!")}
-        >
-          Create List
-        </Button>
-
         <div className="rounded-lg border border-border bg-secondary/50 p-12 text-center w-full">
           <p className="text-muted-foreground mb-4">No shopping lists yet</p>
           <p className="text-sm text-muted-foreground">
