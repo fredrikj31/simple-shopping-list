@@ -3,8 +3,12 @@ import { PlusIcon, Settings } from "lucide-react";
 import { Link } from "react-router";
 import { FloatingButton } from "../../components/FloatingButton";
 import { CreateListDialog } from "../../components/CreateListDialog";
+import { useListLists } from "../../hooks/useListLists";
+import { ListCard } from "../../components/ListCard";
 
 export const HomeRoute = () => {
+  const { data: lists } = useListLists();
+
   return (
     <>
       <main className="flex flex-col min-h-screen bg-background">
@@ -26,14 +30,26 @@ export const HomeRoute = () => {
           </div>
         </header>
 
-        <div className="mx-4 mt-2 flex flex-col items-center gap-4">
-          <div className="rounded-lg border border-border bg-secondary/50 p-12 text-center w-full">
-            <p className="text-muted-foreground mb-4">No shopping lists yet</p>
-            <p className="text-sm text-muted-foreground">
-              Create your first list to get started
-            </p>
+        {lists && lists.length > 0 ? (
+          <div className="flex flex-col gap-3 mx-4 mt-4">
+            {lists.map((list) => (
+              <Link key={list.id} to={`/list/${list.id}`}>
+                <ListCard list={list} />
+              </Link>
+            ))}
           </div>
-        </div>
+        ) : (
+          <div className="mx-4 mt-4 flex flex-col items-center gap-4">
+            <div className="rounded-lg border border-border bg-secondary/50 p-12 text-center w-full">
+              <p className="text-muted-foreground mb-4">
+                No shopping lists yet
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Create your first list to get started
+              </p>
+            </div>
+          </div>
+        )}
       </main>
       <CreateListDialog
         triggerElement={
