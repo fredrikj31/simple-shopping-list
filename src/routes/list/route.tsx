@@ -1,9 +1,16 @@
 import { Button } from "@shadcn-ui/components/ui/button";
 import { ArrowLeft } from "lucide-react";
-import { Link, useParams } from "react-router";
+import { Link, Navigate, useParams } from "react-router";
+import { useGetListById } from "../../hooks/useGetListById";
 
 export const ListRoute = () => {
   const { id } = useParams();
+
+  const { data: list } = useGetListById({ id: id ?? "" });
+
+  if (!id) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <main className="flex flex-col min-h-screen bg-background">
@@ -15,7 +22,7 @@ export const ListRoute = () => {
             </Button>
           </Link>
           <div className="flex flex-col">
-            <h1 className="text-2xl font-bold text-foreground">{id}</h1>
+            <h1 className="text-2xl font-bold text-foreground">{list?.name}</h1>
             <p className="text-sm text-muted-foreground">
               Keep track of what you need
             </p>
