@@ -1,5 +1,6 @@
 import { getDB } from "../index";
 import { createList, CreateListOptions } from "./queries/createList";
+import { deleteList, DeleteListOptions } from "./queries/deleteList";
 import { listLists } from "./queries/getLists";
 
 export const STORE_NAME = "lists" as const;
@@ -13,6 +14,10 @@ export interface ListStore {
 export const listDatabase = {
   createList: async (options: CreateListOptions) => {
     return createList(await getDB(), options);
+  },
+
+  deleteList: async (options: DeleteListOptions) => {
+    return deleteList(await getDB(), options);
   },
 
   listLists: async () => {
