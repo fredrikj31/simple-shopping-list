@@ -1,5 +1,6 @@
 export const queryKeys = {
   lists: {
-    list: ["lists", "list"] as const,
+    list: ["lists"] as const,
+    getListById: (id: string) => ["lists", id] as const,
   },
 };
