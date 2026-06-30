@@ -16,8 +16,8 @@ export const getDB = (): Promise<IDBPDatabase<ShoppingListDB>> => {
   if (!dbPromise) {
     dbPromise = openDB<ShoppingListDB>(DB_NAME, DB_VERSION, {
       upgrade(db) {
-        const store = db.createObjectStore(LIST_STORE, { keyPath: "id" });
-        store.createIndex("by-index", "index");
+        const listStore = db.createObjectStore(LIST_STORE, { keyPath: "id" });
+        listStore.createIndex("by-index", "index");
       },
     });
   }
