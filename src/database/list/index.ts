@@ -3,6 +3,7 @@ import { createList, CreateListOptions } from "./queries/createList";
 import { deleteList, DeleteListOptions } from "./queries/deleteList";
 import { getListById, GetListByIdOptions } from "./queries/getListById";
 import { listLists } from "./queries/listLists";
+import { truncateLists } from "./queries/truncateLists";
 
 export const STORE_NAME = "lists" as const;
 
@@ -27,5 +28,9 @@ export const listDatabase = {
 
   getListById: async (options: GetListByIdOptions) => {
     return getListById(await getDB(), options);
+  },
+
+  truncateLists: async () => {
+    return truncateLists(await getDB());
   },
 };
