@@ -1,6 +1,7 @@
 import { Button } from "@shadcn-ui/components/ui/button";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, RotateCcw } from "lucide-react";
 import { Link } from "react-router";
+import { EraseDataDialog } from "../../components/EraseDataDialog";
 
 export const SettingsRoute = () => {
   return (
@@ -20,6 +21,21 @@ export const SettingsRoute = () => {
           </div>
         </div>
       </header>
+
+      <div className="mx-4 mt-4">
+        <h2 className="text-lg font-semibold">Erase data</h2>
+        <p className="text-sm text-muted-foreground mb-2">
+          This actions is gonna erase all data stored on device.
+        </p>
+        <EraseDataDialog
+          triggerElement={
+            <Button variant="destructive">
+              <RotateCcw className="h-4 w-4 mr-2" />
+              Erase data
+            </Button>
+          }
+        />
+      </div>
     </main>
   );
 };
