@@ -7,23 +7,29 @@ import { PWAUpdatePrompt } from "./components/PWAUpdatePrompt";
 import { HomeRoute } from "./routes/home/route";
 import { SettingsRoute } from "./routes/settings/route";
 import { ListRoute } from "./routes/list/route";
+import { ThemeProvider } from "./providers/Theme";
 
 export const App = () => {
   const queryClient = new QueryClient();
 
   return (
     <>
-      <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<HomeRoute />} />
-            <Route path="/settings" element={<SettingsRoute />} />
-            <Route path="/list">
-              <Route path=":id" element={<ListRoute />} />
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </QueryClientProvider>
+      <ThemeProvider
+        defaultTheme="system"
+        storageKey="simple-shopping-list-theme"
+      >
+        <QueryClientProvider client={queryClient}>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<HomeRoute />} />
+              <Route path="/settings" element={<SettingsRoute />} />
+              <Route path="/list">
+                <Route path=":id" element={<ListRoute />} />
+              </Route>
+            </Routes>
+          </BrowserRouter>
+        </QueryClientProvider>
+      </ThemeProvider>
       <PWAInstallPrompt />
       <PWAUpdatePrompt />
       <Toaster />
