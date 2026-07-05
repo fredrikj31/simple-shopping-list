@@ -7,17 +7,10 @@ import {
   DialogTitle,
 } from "@shadcn-ui/components/ui/dialog";
 import { Button } from "@shadcn-ui/components/ui/button";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import { usePWAInstall } from "../providers/PWAInstall";
 
 const DISMISSED_COOKIE = "pwa-install-dismissed";
-
-interface BeforeInstallPromptEvent extends Event {
-  prompt(): Promise<void>;
-  userChoice: Promise<{
-    outcome: "accepted" | "dismissed";
-    platform: string;
-  }>;
-}
 
 function isDismissed(): boolean {
   return document.cookie
@@ -30,52 +23,24 @@ function setDismissed() {
   document.cookie = `${DISMISSED_COOKIE}=1; max-age=${maxAge}; path=/; SameSite=Lax`;
 }
 
-function isStandalone(): boolean {
-  return (
-    window.matchMedia("(display-mode: standalone)").matches ||
-    ("standalone" in navigator && (navigator as { standalone: boolean }).standalone)
-  );
-}
-
 export function PWAInstallPrompt() {
-  const installPrompt = useRef<BeforeInstallPromptEvent | null>(null);
-  const [open, setOpen] = useState(false);
+  const { canInstall, isStandalone, promptInstall } = usePWAInstall();
+  const [dismissed, setDismissedState] = useState(isDismissed);
 
-  useEffect(() => {
-    if (isStandalone() || isDismissed()) return;
-
-    const handleBeforeInstallPrompt = (e: Event) => {
-      e.preventDefault();
-      installPrompt.current = e as BeforeInstallPromptEvent;
-      setOpen(true);
-    };
-
-    window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
-    return () => {
-      window.removeEventListener(
-        "beforeinstallprompt",
-        handleBeforeInstallPrompt,
-      );
-    };
-  }, []);
+  const open = canInstall && !isStandalone && !dismissed;
 
   const handleInstall = async () => {
-    if (!installPrompt.current) return;
-
-    await installPrompt.current.prompt();
-    const { outcome } = await installPrompt.current.userChoice;
+    const outcome = await promptInstall();
 
     if (outcome === "dismissed") {
       setDismissed();
+      setDismissedState(true);
     }
-
-    installPrompt.current = null;
-    setOpen(false);
   };
 
   const handleDismiss = () => {
     setDismissed();
-    setOpen(false);
+    setDismissedState(true);
   };
 
   return (
