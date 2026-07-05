@@ -1,8 +1,10 @@
 import { Button } from "@shadcn-ui/components/ui/button";
-import { ArrowLeft, RotateCcw } from "lucide-react";
+import { ArrowLeft, Download, RotateCcw } from "lucide-react";
 import { Link } from "react-router";
+import { toast } from "sonner";
 import { EraseDataDialog } from "../../components/EraseDataDialog";
 import { Theme, useTheme } from "../../providers/Theme";
+import { usePWAInstall } from "../../providers/PWAInstall";
 
 const THEME_OPTIONS: { value: Theme; label: string }[] = [
   { value: "system", label: "System" },
@@ -12,6 +14,21 @@ const THEME_OPTIONS: { value: Theme; label: string }[] = [
 
 export const SettingsRoute = () => {
   const { theme, setTheme } = useTheme();
+  const { canInstall, isStandalone, isIOS, promptInstall } = usePWAInstall();
+
+  const handleInstallClick = async () => {
+    if (canInstall) {
+      await promptInstall();
+      return;
+    }
+
+    if (isIOS) {
+      toast.info('Tap the Share button, then "Add to Home Screen"');
+      return;
+    }
+
+    toast.info("Installing isn't supported in this browser");
+  };
 
   return (
     <main className="flex flex-col min-h-screen bg-background">
@@ -48,6 +65,20 @@ export const SettingsRoute = () => {
           ))}
         </div>
       </div>
+
+      {!isStandalone && (
+        <div className="mx-4 mb-6">
+          <h2 className="text-lg font-semibold">Install app</h2>
+          <p className="text-sm text-muted-foreground mb-2">
+            Install the app on your device for quick access and an improved
+            experience.
+          </p>
+          <Button onClick={handleInstallClick}>
+            <Download className="h-4 w-4 mr-2" />
+            Install app
+          </Button>
+        </div>
+      )}
 
       <div className="mx-4">
         <h2 className="text-lg font-semibold">Erase data</h2>
