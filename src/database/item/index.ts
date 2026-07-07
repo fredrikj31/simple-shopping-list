@@ -1,5 +1,6 @@
 import { getDB } from "..";
 import { createItem, CreateItemOptions } from "./queries/createItem";
+import { deleteItem, DeleteItemOptions } from "./queries/deleteItem";
 import {
   listItemsByListId,
   ListItemsByListIdOptions,
@@ -20,5 +21,9 @@ export const itemDatabase = {
 
   listItemsByListId: async (options: ListItemsByListIdOptions) => {
     return listItemsByListId(await getDB(), options);
+  },
+
+  deleteItem: async (options: DeleteItemOptions) => {
+    return deleteItem(await getDB(), options);
   },
 };
