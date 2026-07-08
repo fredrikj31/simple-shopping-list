@@ -2,6 +2,10 @@ import { getDB } from "..";
 import { createItem, CreateItemOptions } from "./queries/createItem";
 import { deleteItem, DeleteItemOptions } from "./queries/deleteItem";
 import {
+  deleteItemsByListId,
+  DeleteItemsByListIdOptions,
+} from "./queries/deleteItemsByListId";
+import {
   listItemsByListId,
   ListItemsByListIdOptions,
 } from "./queries/listItemsByListId";
@@ -30,5 +34,9 @@ export const itemDatabase = {
 
   updateItem: async (options: UpdateItemOptions) => {
     return updateItem(await getDB(), options);
+  },
+
+  deleteItemsByListId: async (options: DeleteItemsByListIdOptions) => {
+    return deleteItemsByListId(await getDB(), options);
   },
 };

@@ -66,7 +66,7 @@ export const ListCard = ({
             <DialogFooter className="justify-end flex flex-row">
               <Button
                 variant="destructive"
-                onClick={() => deleteList({ id: list.id })}
+                onClick={() => deleteList({ listId: list.id })}
                 disabled={isDeleteListPending}
               >
                 Delete
