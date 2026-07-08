@@ -4,11 +4,14 @@ import { Link, Navigate, useParams } from "react-router";
 import { useGetListById } from "../../hooks/useGetListById";
 import { CreateItemDialog } from "../../components/CreateItemDialog";
 import { FloatingButton } from "../../components/FloatingButton";
+import { ItemList } from "../../components/ItemList";
+import { useListItemsByListId } from "../../hooks/item/useListItemsByListId";
 
 export const ListRoute = () => {
   const { id } = useParams();
 
   const { data: list } = useGetListById({ id: id ?? "" });
+  const { data: items } = useListItemsByListId({ listId: id ?? "" });
 
   if (!id) {
     return <Navigate to="/" />;
@@ -34,6 +37,7 @@ export const ListRoute = () => {
             </div>
           </div>
         </header>
+        <ItemList items={items ?? []} />
       </main>
       <CreateItemDialog
         listId={id}
