@@ -5,6 +5,7 @@ import {
   listItemsByListId,
   ListItemsByListIdOptions,
 } from "./queries/listItemsByListId";
+import { updateItem, UpdateItemOptions } from "./queries/updateItem";
 
 export const STORE_NAME = "items" as const;
 
@@ -25,5 +26,9 @@ export const itemDatabase = {
 
   deleteItem: async (options: DeleteItemOptions) => {
     return deleteItem(await getDB(), options);
+  },
+
+  updateItem: async (options: UpdateItemOptions) => {
+    return updateItem(await getDB(), options);
   },
 };
