@@ -31,5 +31,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Checks formatting
+        run: pnpm run format:check
+
       - name: Build Web Application
         run: pnpm run build

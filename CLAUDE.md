@@ -41,6 +41,7 @@ database (`idb`'s `openDB`) with an object store per entity, memoized behind
 `getDB()`.
 
 Per-entity pattern, mirrored for every entity (`list`, `item`, ...):
+
 - `database/<entity>/queries/<verb><Entity>.ts` — one function per operation
   (`createItem.ts`, `listItemsByListId.ts`, `updateItem.ts`, `deleteItem.ts`),
   each taking the opened `IDBPDatabase` plus an options object.
@@ -48,6 +49,7 @@ Per-entity pattern, mirrored for every entity (`list`, `item`, ...):
   and exposes a single `<entity>Database` object (e.g. `itemDatabase`).
 
 **Rules:**
+
 - Never call `getDB()` or touch the IndexedDB transaction directly from a
   hook or component — always go through `<entity>Database.<method>`.
 - New DB operation → add a query file under `queries/`, then wire it into
