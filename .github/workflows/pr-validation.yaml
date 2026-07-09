@@ -40,5 +40,5 @@ jobs:
       - name: Checks types
         run: pnpm run build:check
 
-      - name: Build Web Application
+      - name: Build application
         run: pnpm run build
