@@ -67,8 +67,9 @@ const ItemGroup = ({ title, icon, items }: ItemGroupProps) => {
 
 const ItemRow = ({ item }: { item: ItemStore["value"] }) => {
   const [confirmOpen, setConfirmOpen] = useState(false);
-  const { mutate: deleteItem, isPending: isDeleteItemPending } =
-    useDeleteItem({ listId: item.listId });
+  const { mutate: deleteItem, isPending: isDeleteItemPending } = useDeleteItem({
+    listId: item.listId,
+  });
   const { mutate: updateItem } = useUpdateItem({ listId: item.listId });
 
   return (
@@ -88,11 +89,7 @@ const ItemRow = ({ item }: { item: ItemStore["value"] }) => {
       >
         {item.text}
       </span>
-      <Button
-        variant="ghost"
-        size="icon"
-        onClick={() => setConfirmOpen(true)}
-      >
+      <Button variant="ghost" size="icon" onClick={() => setConfirmOpen(true)}>
         <Trash2 className="size-4 text-muted-foreground hover:text-destructive" />
       </Button>
 
