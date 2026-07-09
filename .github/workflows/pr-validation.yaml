@@ -34,5 +34,11 @@ jobs:
       - name: Checks formatting
         run: pnpm run format:check
 
+      - name: Checks linting
+        run: pnpm run lint
+
+      - name: Checks types
+        run: pnpm run build:check
+
       - name: Build Web Application
         run: pnpm run build
