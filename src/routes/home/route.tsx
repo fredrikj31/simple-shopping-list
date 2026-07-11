@@ -1,5 +1,5 @@
 import { Button } from "@shadcn-ui/components/ui/button";
-import { PlusIcon, Settings } from "lucide-react";
+import { Layers, PlusIcon, Settings } from "lucide-react";
 import { Link } from "react-router";
 import { FloatingButton } from "../../components/FloatingButton";
 import { CreateListDialog } from "../../components/CreateListDialog";
@@ -22,11 +22,18 @@ export const HomeRoute = () => {
                 Organize your shopping with multiple lists
               </p>
             </div>
-            <Link to="/settings">
-              <Button variant="ghost" size="icon">
-                <Settings className="size-5" />
-              </Button>
-            </Link>
+            <div className="flex items-center gap-1">
+              <Link to="/groups">
+                <Button variant="ghost" size="icon">
+                  <Layers className="size-5" />
+                </Button>
+              </Link>
+              <Link to="/settings">
+                <Button variant="ghost" size="icon">
+                  <Settings className="size-5" />
+                </Button>
+              </Link>
+            </div>
           </div>
         </header>
 

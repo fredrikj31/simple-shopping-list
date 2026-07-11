@@ -7,6 +7,7 @@ import { PWAUpdatePrompt } from "./components/PWAUpdatePrompt";
 import { HomeRoute } from "./routes/home/route";
 import { SettingsRoute } from "./routes/settings/route";
 import { ListRoute } from "./routes/list/route";
+import { GroupsRoute } from "./routes/groups/route";
 import { ThemeProvider } from "./providers/Theme";
 import { PWAInstallProvider } from "./providers/PWAInstall";
 
@@ -25,6 +26,7 @@ export const App = () => {
               <Routes>
                 <Route path="/" element={<HomeRoute />} />
                 <Route path="/settings" element={<SettingsRoute />} />
+                <Route path="/groups" element={<GroupsRoute />} />
                 <Route path="/list">
                   <Route path=":id" element={<ListRoute />} />
                 </Route>
