@@ -60,7 +60,7 @@ export const HomeRoute = () => {
       </main>
       <CreateListDialog
         triggerElement={
-          <FloatingButton onClick={() => console.log("Clicked!")}>
+          <FloatingButton>
             <PlusIcon className="size-6" />
           </FloatingButton>
         }

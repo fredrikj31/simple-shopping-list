@@ -42,7 +42,7 @@ export const ListRoute = () => {
       <CreateItemDialog
         listId={id}
         triggerElement={
-          <FloatingButton onClick={() => console.log("Clicked!")}>
+          <FloatingButton>
             <PlusIcon className="size-6" />
           </FloatingButton>
         }
