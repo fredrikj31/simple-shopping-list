@@ -19,7 +19,7 @@ export const HomeRoute = () => {
                 Shopping Lists
               </h1>
               <p className="text-sm text-muted-foreground">
-                Organize your shopping with multiple lists
+                Start organize your shopping
               </p>
             </div>
             <div className="flex items-center gap-1">
