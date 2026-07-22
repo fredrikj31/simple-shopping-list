@@ -29,8 +29,8 @@ export const HomeRoute = () => {
                 </Button>
               </Link>
               <Link to="/settings">
-                <Button variant="ghost" size="icon">
-                  <Settings className="size-5" />
+                <Button variant="ghost" className="size-12">
+                  <Settings className="size-6" />
                 </Button>
               </Link>
             </div>
