@@ -19,13 +19,13 @@ export const HomeRoute = () => {
                 Shopping Lists
               </h1>
               <p className="text-sm text-muted-foreground">
-                Organize your shopping with multiple lists
+                Start organize your shopping
               </p>
             </div>
             <div className="flex items-center gap-1">
               <Link to="/groups">
-                <Button variant="ghost" size="icon">
-                  <Layers className="size-5" />
+                <Button variant="ghost" className="size-12">
+                  <Layers className="size-6" />
                 </Button>
               </Link>
               <Link to="/settings">
