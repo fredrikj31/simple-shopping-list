@@ -2,7 +2,7 @@ import { cn } from "@shadcn-ui/lib/utils";
 import { ReactNode } from "react";
 
 interface FloatingButtonProps {
-  onClick: () => void;
+  onClick?: () => void;
   children: ReactNode;
   className?: string;
 }
