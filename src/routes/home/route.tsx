@@ -24,8 +24,8 @@ export const HomeRoute = () => {
             </div>
             <div className="flex items-center gap-1">
               <Link to="/groups">
-                <Button variant="ghost" size="icon">
-                  <Layers className="size-5" />
+                <Button variant="ghost" className="size-12">
+                  <Layers className="size-6" />
                 </Button>
               </Link>
               <Link to="/settings">
