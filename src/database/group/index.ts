@@ -1,6 +1,7 @@
 import { getDB } from "..";
 import { createGroup, CreateGroupOptions } from "./queries/createGroup";
 import { deleteGroup, DeleteGroupOptions } from "./queries/deleteGroup";
+import { getGroup, GetGroupOptions } from "./queries/getGroup";
 import { listGroups } from "./queries/listGroups";
 
 export const STORE_NAME = "groups" as const;
@@ -21,5 +22,9 @@ export const groupDatabase = {
 
   listGroups: async () => {
     return listGroups(await getDB());
+  },
+
+  getGroup: async (options: GetGroupOptions) => {
+    return getGroup(await getDB(), options);
   },
 };
