@@ -94,6 +94,13 @@ export const SettingsRoute = () => {
           }
         />
       </div>
+
+      <div className="mx-4 mt-6 mb-6">
+        <h2 className="text-lg font-semibold">About</h2>
+        <p className="text-sm text-muted-foreground">
+          Version {__APP_VERSION__}
+        </p>
+      </div>
     </main>
   );
 };
