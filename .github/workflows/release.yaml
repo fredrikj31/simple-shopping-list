@@ -44,6 +44,8 @@ jobs:
 
       - name: Build Web Application
         if: steps.semantic.outputs.new-release-published == 'true'
+        env:
+          APP_VERSION: ${{ steps.semantic.outputs.new-release-version }}
         run: pnpm run build
 
       - name: Deploy to Cloudflare Pages
