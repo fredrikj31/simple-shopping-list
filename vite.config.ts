@@ -22,4 +22,7 @@ export default defineConfig({
       "@shadcn-ui": path.resolve(__dirname, "./src/shadcn-ui"),
     },
   },
+  define: {
+    __APP_VERSION__: JSON.stringify(process.env.APP_VERSION ?? "dev"),
+  },
 });
