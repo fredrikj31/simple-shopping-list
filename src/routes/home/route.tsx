@@ -24,12 +24,16 @@ export const HomeRoute = () => {
             </div>
             <div className="flex items-center gap-1">
               <Link to="/groups">
-                <Button variant="ghost" className="size-12">
+                <Button variant="ghost" className="size-12" aria-label="Groups">
                   <Layers className="size-6" />
                 </Button>
               </Link>
               <Link to="/settings">
-                <Button variant="ghost" className="size-12">
+                <Button
+                  variant="ghost"
+                  className="size-12"
+                  aria-label="Settings"
+                >
                   <Settings className="size-6" />
                 </Button>
               </Link>
@@ -60,7 +64,7 @@ export const HomeRoute = () => {
       </main>
       <CreateListDialog
         triggerElement={
-          <FloatingButton>
+          <FloatingButton aria-label="Create list">
             <PlusIcon className="size-6" />
           </FloatingButton>
         }

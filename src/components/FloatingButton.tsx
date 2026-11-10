@@ -5,15 +5,18 @@ interface FloatingButtonProps {
   onClick?: () => void;
   children: ReactNode;
   className?: string;
+  "aria-label"?: string;
 }
 export const FloatingButton = ({
   onClick,
   children,
   className,
+  "aria-label": ariaLabel,
 }: FloatingButtonProps) => {
   return (
     <button
       onClick={onClick}
+      aria-label={ariaLabel}
       className={cn(
         "fixed bottom-6 right-6 bg-primary text-primary-foreground rounded-full p-4 shadow-lg hover:bg-primary/90 transition-colors",
         className,
